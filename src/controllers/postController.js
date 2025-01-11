@@ -51,31 +51,33 @@ exports.getMyPosts = async (req, res) => {
   // @desc    Update a post
 // @route   PUT /api/posts/:id
 // @access  Private
+// Update a post
 exports.updatePost = async (req, res) => {
-    const { title, description, quantity } = req.body;
-  
-    try {
-      const post = await Post.findById(req.params.id);
-  
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-  
-      // Ensure the logged-in user is the owner of the post
-      if (post.donor.toString() !== req.user.id) {
-        return res.status(403).json({ message: 'Not authorized to update this post' });
-      }
-  
-      post.title = title || post.title;
-      post.description = description || post.description;
-      post.quantity = quantity || post.quantity;
-  
-      const updatedPost = await post.save();
-      res.json(updatedPost);
-    } catch (error) {
-      res.status(500).json({ message: 'Server error', error: error.message });
+  const { title, description, quantity } = req.body;
+
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
     }
-  };
+
+    // Ensure the logged-in user is the owner of the post
+    if (post.donor.toString() !== req.user.id) {
+      return res.status(403).json({ message: "Not authorized to update this post" });
+    }
+
+    post.title = title || post.title;
+    post.description = description || post.description;
+    post.quantity = quantity || post.quantity;
+
+    const updatedPost = await post.save();
+    res.json(updatedPost);
+  } catch (error) {
+    console.error("Error updating post:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
   
   // @desc    Delete a post
   // @route   DELETE /api/posts/:id

@@ -67,35 +67,39 @@ exports.getProfile = async (req, res) => {
     }
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error(error.message);
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
 // @desc    Update user profile
 // @route   PUT /api/auth/profile
 // @access  Private
+// Update user profile
 exports.updateProfile = async (req, res) => {
-  const { name, email, role } = req.body;
+  const { name, email } = req.body;
 
   try {
     const user = await User.findById(req.user.id);
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Update fields
+    // Update user details
     user.name = name || user.name;
     user.email = email || user.email;
-    user.role = role || user.role; // This is optional and shouldn't typically change
-    await user.save();
+
+    const updatedUser = await user.save();
 
     res.json({
-      _id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
     });
   } catch (error) {
+    console.error(error.message);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
