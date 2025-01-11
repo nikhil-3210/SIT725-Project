@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="./css/styles.css"> <!-- Add your styles file -->
+</head>
+<body>
+  <!-- Navbar will be dynamically loaded by navbar.js -->
+
+  <!-- Profile Section -->
+  <main>
+    <h1>Profile</h1>
+    <form id="profileForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="role">Role:</label>
+      <input type="text" id="role" name="role" disabled> <!-- Role should not be editable -->
+
+      <button type="submit">Update Profile</button>
+    </form>
+
+    <!-- User Posts Section -->
+    <h2>My Posts</h2>
+    <div id="myPostsContainer">
+      <!-- User's posts will be dynamically added here -->
+    </div>
+    
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Edit Post</h2>
+        <form id="editPostForm">
+          <label for="editTitle">Title:</label>
+          <input type="text" id="editTitle" name="title" required />
+    
+          <label for="editDescription">Description:</label>
+          <textarea id="editDescription" name="description" required></textarea>
+    
+          <label for="editQuantity">Quantity:</label>
+          <input type="number" id="editQuantity" name="quantity" required />
+    
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+  <!-- Scripts -->
+  <script src="./js/navbar.js"></script>
+  <script src="./js/profile.js"></script>
+</body>
+</html>
