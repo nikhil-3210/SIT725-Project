@@ -1,20 +1,22 @@
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 
 // Redirect to login if the user is not logged in
 if (!token) {
-  window.location.href = 'index.html';
+  window.location.href = "index.html";
 }
 
 // Fetch all posts
 const fetchPosts = async () => {
   try {
-    const response = await fetch("/api/posts");
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
+    const response = await fetch("/api/posts", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch posts");
+
     const posts = await response.json();
-    const postsContainer = document.getElementById("postsContainer");
-    postsContainer.innerHTML = ""; // Clear existing posts
+    const container = document.getElementById("postsContainer");
+    container.innerHTML = ""; // Clear existing posts
 
     if (posts.length > 0) {
       posts.forEach((post) => {
@@ -26,26 +28,28 @@ const fetchPosts = async () => {
           <p><strong>Quantity:</strong> ${post.quantity}</p>
           <p><em>Posted by: ${post.donor?.name || "Unknown"}</em></p>
         `;
-        postsContainer.appendChild(postElement);
+        container.appendChild(postElement);
       });
     } else {
-      postsContainer.innerHTML = "<p>No posts available at the moment.</p>";
+      container.innerHTML = "<p>No posts available at the moment.</p>";
     }
   } catch (error) {
     console.error("Error fetching posts:", error.message);
-    alert(error.message || "Failed to load posts");
+    alert("Error fetching posts");
   }
 };
 
+// Fetch posts on page load
 document.addEventListener("DOMContentLoaded", fetchPosts);
 
 // Logout functionality
 const logout = () => {
-  localStorage.removeItem('token'); // Clear token from localStorage
-  window.location.href = 'index.html'; // Redirect to login page
+  localStorage.removeItem("token"); // Clear token from localStorage
+  window.location.href = "index.html"; // Redirect to login page
 };
 
-document.getElementById('logoutButton').addEventListener('click', logout);
-
-// Fetch all posts on page load
-fetchPosts();
+// Attach logout functionality only if the button exists
+const logoutButton = document.getElementById("logoutButton");
+if (logoutButton) {
+  logoutButton.addEventListener("click", logout);
+}

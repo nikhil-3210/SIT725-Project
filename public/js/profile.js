@@ -1,8 +1,66 @@
 const token = localStorage.getItem("token");
 
-// Redirect to login if the user is not logged in
 if (!token) {
-  window.location.href = "index.html";
+  // Redirect to login page if not authenticated
+  if (window.location.pathname !== "/index.html") {
+    window.location.href = "index.html";
+  }
+} else if (window.location.pathname === "/profile.html") {
+  // Fetch user profile and posts only on the profile page
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch("/api/auth/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch profile");
+
+      const user = await response.json();
+      document.getElementById("name").value = user.name;
+      document.getElementById("email").value = user.email;
+      document.getElementById("role").value = user.role;
+    } catch (error) {
+      console.error("Error fetching profile:", error.message);
+      alert(error.message || "Failed to fetch profile");
+    }
+  };
+
+  const fetchMyPosts = async () => {
+    try {
+      const response = await fetch("/api/posts/my-posts", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) throw new Error("Failed to fetch your posts");
+
+      const posts = await response.json();
+      const container = document.getElementById("myPostsContainer");
+      container.innerHTML = "";
+
+      if (posts.length > 0) {
+        posts.forEach((post) => {
+          const postElement = document.createElement("div");
+          postElement.className = "post";
+          postElement.innerHTML = `
+            <h2>${post.title}</h2>
+            <p>${post.description}</p>
+            <p><strong>Quantity:</strong> ${post.quantity}</p>
+            <button onclick="openEditModal('${post._id}')">Edit</button>
+            <button onclick="deletePost('${post._id}')">Delete</button>
+          `;
+          container.appendChild(postElement);
+        });
+      } else {
+        container.innerHTML = "<p>No posts created by you yet.</p>";
+      }
+    } catch (error) {
+      console.error("Error fetching your posts:", error.message);
+      alert("Error fetching your posts");
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", fetchProfile);
+  document.addEventListener("DOMContentLoaded", fetchMyPosts);
 }
 
 // Fetch user's profile data

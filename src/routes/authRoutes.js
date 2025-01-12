@@ -5,7 +5,7 @@ const { getProfile, updateProfile } = require('../controllers/authController');
 
 const router = express.Router();
 
-router.post('/register', registerUser);
+router.post("/register", registerUser); // Register endpoint
 router.post('/login', loginUser);
 router.get('/profile', protect, getProfile); // Get user profile
 router.put('/profile', protect, updateProfile); // Update user profile
