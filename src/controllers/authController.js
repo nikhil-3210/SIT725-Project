@@ -11,24 +11,20 @@ exports.registerUser = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   try {
+    // Validate required fields
     if (!name || !email || !password || !role) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
+    // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    console.log(`Password during registration: ${password}`); // Debugging
-
-    // Save user directly with the plain password
-    const user = new User({
-      name,
-      email,
-      password,
-      role,
-    });
+    // Save user directly with the plain password (No hashing applied here for simplicity)
+    console.log(`Registering user: ${email}`);
+    const user = new User({ name, email, password, role });
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully' });
@@ -43,27 +39,30 @@ exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // Validate required fields
     if (!email || !password) {
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
     console.log(`Login attempt with email: ${email}`);
 
+    // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       console.error(`User not found: ${email}`);
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    // Compare plain passwords directly (for now)
     console.log(`Password entered during login: ${password}`);
     console.log(`Password stored in DB for ${email}: ${user.password}`);
 
-    // Compare plain passwords directly
     if (user.password !== password) {
       console.error(`Password mismatch for email: ${email}`);
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    // Generate JWT token
     const token = generateToken(user._id, user.role);
 
     console.log(`User logged in successfully: ${email}`);
@@ -78,29 +77,33 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// @desc    Get user profile
-// @route   GET /api/auth/profile
-// @access  Private
+// Get user profile
 exports.getProfile = async (req, res) => {
   try {
+    // Fetch user by ID
     const user = await User.findById(req.user.id).select('-password'); // Exclude password
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    res.json(user);
+
+    res.json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    });
   } catch (error) {
-    console.error(error.message);
+    console.error('Error fetching profile:', error.message);
     res.status(500).json({ message: 'Server error' });
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
+// Update user profile
 exports.updateProfile = async (req, res) => {
   const { name, email } = req.body;
 
   try {
+    // Fetch user by ID
     const user = await User.findById(req.user.id);
 
     if (!user) {
@@ -120,7 +123,7 @@ exports.updateProfile = async (req, res) => {
       role: updatedUser.role,
     });
   } catch (error) {
-    console.error(error.message);
+    console.error('Error updating profile:', error.message);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
