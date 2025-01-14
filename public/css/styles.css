@@ -220,3 +220,18 @@ body {
 .close:hover {
   color: darkred;
 }
+
+p {
+  margin-top: 20px;
+  text-align: center;
+}
+
+p a {
+  color: blue;
+  text-decoration: underline;
+}
+
+p a:hover {
+  text-decoration: none;
+  color: darkblue;
+}
