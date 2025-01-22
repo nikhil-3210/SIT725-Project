@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!token) {
     console.error("No token found. Redirecting to login...");
-    window.location.href = "index.html"; // Redirect to login if not authenticated
+    window.location.href = "index.html";
     return;
   }
   console.log("Token found. Fetching profile...");
@@ -13,9 +13,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const roleField = document.getElementById("role");
   const myPostsContainer = document.getElementById("myPostsContainer");
   const postsHeader = document.getElementById("postsHeader");
-  const createPostButton = document.getElementById("createPostButton");
   const editModal = document.getElementById("editModal");
   const closeModal = document.getElementById("closeModal");
+
+  // Hide the edit modal by default
+  if (editModal) editModal.style.display = "none";
 
   // Fetch profile data
   try {
@@ -43,7 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (data.role === "beneficiary") {
       if (postsHeader) postsHeader.style.display = "none";
       if (myPostsContainer) myPostsContainer.style.display = "none";
-      if (createPostButton) createPostButton.style.display = "none";
     } else if (data.role === "donor") {
       console.log("Fetching donor posts...");
       fetchMyPosts(token);
@@ -82,6 +83,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             <h3>${post.title}</h3>
             <p>${post.description}</p>
             <p><strong>Quantity:</strong> ${post.quantity}</p>
+            <p><strong>Food Type:</strong> ${post.foodType}</p>
+            <p><strong>Dietary Category:</strong> ${post.dietaryCategory}</p>
+            <p><strong>Contains Nuts:</strong> ${post.containsNuts ? "Yes" : "No"}</p>
+            <p><strong>Ingredients:</strong> ${post.ingredients}</p>
+            <p><strong>Additional Description:</strong> ${post.additionalDescription}</p>
             <button onclick="editPost('${post._id}')">Edit</button>
             <button onclick="deletePost('${post._id}')">Delete</button>
           `;
@@ -96,41 +102,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Update profile functionality
-  document
-    .getElementById("profileForm")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = nameField.value;
-      const email = emailField.value;
-
-      try {
-        const response = await fetch("/api/auth/profile", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ name, email }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to update profile");
-        }
-
-        alert("Profile updated successfully!");
-      } catch (error) {
-        console.error("Error updating profile:", error.message);
-        alert("Error updating profile: " + error.message);
-      }
-    });
-
   // Edit Post functionality
   window.editPost = (postId) => {
     fetch(`/api/posts/${postId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         if (!response.ok) {
@@ -142,48 +117,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("editTitle").value = post.title;
         document.getElementById("editDescription").value = post.description;
         document.getElementById("editQuantity").value = post.quantity;
-        editModal.style.display = "block";
-
-        // Save changes
-        document.getElementById("editPostForm").onsubmit = async (e) => {
-          e.preventDefault();
-          const title = document.getElementById("editTitle").value;
-          const description = document.getElementById("editDescription").value;
-          const quantity = document.getElementById("editQuantity").value;
-
-          try {
-            const response = await fetch(`/api/posts/${postId}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              body: JSON.stringify({ title, description, quantity }),
-            });
-
-            if (!response.ok) {
-              throw new Error("Failed to update post");
-            }
-
-            alert("Post updated successfully!");
-            editModal.style.display = "none";
-            fetchMyPosts(token);
-          } catch (error) {
-            console.error("Error updating post:", error.message);
-            alert("Error updating post: " + error.message);
-          }
-        };
+        document.getElementById("editFoodType").value = post.foodType;
+        document.getElementById("editDietaryCategory").value = post.dietaryCategory;
+        document.getElementById("editContainsNuts").value = post.containsNuts ? "true" : "false";
+        document.getElementById("editIngredients").value = post.ingredients;
+        document.getElementById("editAdditionalDescription").value = post.additionalDescription;
+        if (editModal) editModal.style.display = "block";
       })
       .catch((error) => {
-        console.error(error.message);
+        console.error("Error fetching post details:", error.message);
         alert("Error fetching post details");
       });
   };
 
   // Close modal
-  closeModal.onclick = () => {
-    editModal.style.display = "none";
-  };
+  if (closeModal) {
+    closeModal.onclick = () => {
+      if (editModal) editModal.style.display = "none";
+    };
+  }
 
   // Delete Post functionality
   window.deletePost = async (postId) => {
@@ -191,9 +143,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         const response = await fetch(`/api/posts/${postId}`, {
           method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (!response.ok) {
