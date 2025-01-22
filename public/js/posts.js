@@ -26,6 +26,11 @@ const fetchPosts = async () => {
           <h2>${post.title}</h2>
           <p>${post.description}</p>
           <p><strong>Quantity:</strong> ${post.quantity}</p>
+          <p><strong>Food Type:</strong> ${post.foodType}</p>
+          <p><strong>Dietary Category:</strong> ${post.dietaryCategory}</p>
+          <p><strong>Contains Nuts:</strong> ${post.containsNuts ? "Yes" : "No"}</p>
+          <p><strong>Ingredients:</strong> ${post.ingredients}</p>
+          <p><strong>Additional Description:</strong> ${post.additionalDescription}</p>
           <p><em>Posted by: ${post.donor?.name || "Unknown"}</em></p>
         `;
         container.appendChild(postElement);

@@ -18,6 +18,25 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter the quantity'],
   },
+  foodType: {
+    type: String,
+    enum: ['Veg', 'Non-Veg'],
+    required: true,
+  },
+  dietaryCategory: {
+    type: String,
+    default: 'None',
+  },
+  containsNuts: {
+    type: Boolean,
+    default: false,
+  },
+  ingredients: {
+    type: String,
+  },
+  additionalDescription: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
