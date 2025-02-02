@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Create a Post</h1>
-    <form id="createPostForm">
+    <form id="createPostForm" enctype="multipart/form-data">
       <label for="title">Title:</label>
       <input type="text" id="title" name="title" required />
 
@@ -35,8 +35,8 @@
 
       <label for="containsNuts">Contains Nuts:</label>
       <select id="containsNuts" name="containsNuts" required>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
       </select>
 
       <label for="ingredients">Ingredients:</label>
@@ -54,6 +54,95 @@
         placeholder="Add any additional details"
       ></textarea>
 
+      <label for="expiryDate">Expiry Date/Time:</label>
+      <input type="datetime-local" id="expiryDate" name="expiryDate" />
+
+      <label for="storageInstructions">Storage Instructions:</label>
+      <textarea
+        id="storageInstructions"
+        name="storageInstructions"
+        placeholder="e.g., Refrigerate, Keep frozen"
+      ></textarea>
+
+      <label for="servingSize">Serving Size:</label>
+      <input
+        type="text"
+        id="servingSize"
+        name="servingSize"
+        placeholder="e.g., 2 servings"
+      />
+
+      <label for="preparationDate">Preparation Date/Time:</label>
+      <input
+        type="datetime-local"
+        id="preparationDate"
+        name="preparationDate"
+      />
+
+      <label for="allergenInfo">Allergen Information:</label>
+      <textarea
+        id="allergenInfo"
+        name="allergenInfo"
+        placeholder="e.g., Contains dairy, gluten"
+      ></textarea>
+
+      <label for="packagingType">Packaging Type:</label>
+      <input
+        type="text"
+        id="packagingType"
+        name="packagingType"
+        placeholder="e.g., Sealed, Freshly prepared"
+      />
+
+      <label for="reheatingInstructions">Reheating Instructions:</label>
+      <textarea
+        id="reheatingInstructions"
+        name="reheatingInstructions"
+        placeholder="Provide reheating instructions"
+      ></textarea>
+
+      <label for="certification">Certification (optional):</label>
+      <input
+        type="text"
+        id="certification"
+        name="certification"
+        placeholder="e.g., Organic, Halal"
+      />
+
+      <label for="pickupAddress">Pickup Address:</label>
+      <textarea
+        id="pickupAddress"
+        name="pickupAddress"
+        placeholder="Enter the pickup address"
+      ></textarea>
+
+      <label for="landmark">Landmark:</label>
+      <input
+        type="text"
+        id="landmark"
+        name="landmark"
+        placeholder="e.g., Near ABC park"
+      />
+
+      <label for="contactInfo">Contact Information:</label>
+      <input
+        type="text"
+        id="contactInfo"
+        name="contactInfo"
+        placeholder="Phone or email"
+      />
+
+      <label for="pickupTimeSlot">Pickup Time Slot:</label>
+      <input
+        type="text"
+        id="pickupTimeSlot"
+        name="pickupTimeSlot"
+        placeholder="e.g., 10:00 AM - 12:00 PM"
+      />
+
+      <label for="foodImage">Image of the Food:</label>
+      <input type="file" id="foodImage" name="foodImage" accept="image/*" />
+
       <button type="submit">Create Post</button>
     </form>
 
@@ -61,7 +150,6 @@
     <div id="toast" class="toast">Item listed successfully!</div>
 
     <script src="./js/navbar.js"></script>
-    <!-- Navbar -->
     <script src="./js/create-post.js"></script>
   </body>
 </html>
