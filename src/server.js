@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/uploads", express.static("public/uploads"));
+app.use("/api/contact", require("./routes/contactRoutes"));
 
 // Default route for homepage
 app.get("/", (req, res) => {

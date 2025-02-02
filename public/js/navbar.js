@@ -13,6 +13,8 @@ const loadNavbar = () => {
             : ""
         } <!-- Show Create Post for donors -->
         ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
+        <li><a href="blogs.html">Blogs</a></li> <!-- New link for Blogs -->
+        <li><a href="contact.html">Contact Us</a></li> <!-- New link for Contact Us -->
         ${
           token
             ? '<li><button id="logoutButton" class="logout-btn">Logout</button></li>'
