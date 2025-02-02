@@ -241,4 +241,41 @@ window.editPost = (postId) => {
       }
     }
   };
+  
+  document.getElementById("profileForm").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent form submission default behavior
+  
+    const token = localStorage.getItem("token");
+  
+    if (!token) {
+      alert("Unauthorized. Please log in again.");
+      return;
+    }
+  
+    // Get updated values from the input fields
+    const updatedProfile = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+    };
+  
+    try {
+      const response = await fetch("/api/auth/profile", {
+        method: "PUT", // Ensure this matches your backend route
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedProfile),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+  
+      alert("Profile updated successfully!");
+    } catch (error) {
+      console.error("Error updating profile:", error.message);
+      alert("Error updating profile: " + error.message);
+    }
+  });
 });
