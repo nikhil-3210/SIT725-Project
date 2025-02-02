@@ -1,10 +1,11 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path'); // Import the path module
-const connectDB = require('./config/db');
+require("dotenv").config();
+const express = require("express");
+const path = require("path");
+const connectDB = require("./config/db");
 
 const app = express();
-
+app.use(express.json()); // For JSON payloads
+app.use(express.urlencoded({ extended: true })); // For form-url-encoded payloads
 // Connect to MongoDB
 connectDB();
 
@@ -12,15 +13,15 @@ connectDB();
 app.use(express.json());
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/posts', require('./routes/postRoutes'));
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/posts", require("./routes/postRoutes"));
 
-// Default route for homepage (optional)
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+// Default route for homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // Start the server

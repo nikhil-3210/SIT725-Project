@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="./css/styles.css"> <!-- Add your styles file -->
 </head>
 <body>
-  <!-- Navbar will be dynamically loaded by navbar.js -->
-
-  <!-- Profile Section -->
   <main>
     <h1>Profile</h1>
     <form id="profileForm">
@@ -25,11 +22,8 @@
       <button type="submit">Update Profile</button>
     </form>
 
-    <!-- User Posts Section -->
     <h2 id="postsHeader">My Posts</h2>
-    <div id="myPostsContainer">
-      <!-- User's posts will be dynamically added here -->
-    </div>
+    <div id="myPostsContainer"></div>
     
     <div id="editModal" class="modal" style="display: none;">
       <div class="modal-content">
@@ -38,56 +32,75 @@
         <form id="editPostForm">
           <label for="editTitle">Title:</label>
           <input type="text" id="editTitle" name="title" required />
-      
+    
           <label for="editDescription">Description:</label>
           <textarea id="editDescription" name="description" required></textarea>
-      
+    
           <label for="editQuantity">Quantity:</label>
           <input type="number" id="editQuantity" name="quantity" required />
-      
+    
           <label for="editFoodType">Food Type:</label>
           <select id="editFoodType" name="foodType" required>
             <option value="Veg">Veg</option>
             <option value="Non-Veg">Non-Veg</option>
           </select>
-      
+    
           <label for="editDietaryCategory">Dietary Category:</label>
-          <input
-            type="text"
-            id="editDietaryCategory"
-            name="dietaryCategory"
-            placeholder="e.g., Gluten-Free, Vegan"
-            required
-          />
-      
+          <input type="text" id="editDietaryCategory" name="dietaryCategory" required />
+    
           <label for="editContainsNuts">Contains Nuts:</label>
           <select id="editContainsNuts" name="containsNuts" required>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
-      
+    
           <label for="editIngredients">Ingredients:</label>
-          <textarea
-            id="editIngredients"
-            name="ingredients"
-            placeholder="List the ingredients"
-            required
-          ></textarea>
-      
+          <textarea id="editIngredients" name="ingredients" required></textarea>
+    
           <label for="editAdditionalDescription">Additional Description:</label>
-          <textarea
-            id="editAdditionalDescription"
-            name="additionalDescription"
-            placeholder="Add any additional details"
-          ></textarea>
-      
+          <textarea id="editAdditionalDescription" name="additionalDescription"></textarea>
+    
+          <label for="editExpiryDate">Expiry Date/Time:</label>
+          <input type="datetime-local" id="editExpiryDate" name="expiryDate" />
+    
+          <label for="editStorageInstructions">Storage Instructions:</label>
+          <textarea id="editStorageInstructions" name="storageInstructions"></textarea>
+    
+          <label for="editServingSize">Serving Size:</label>
+          <input type="text" id="editServingSize" name="servingSize" />
+    
+          <label for="editPreparationDate">Preparation Date/Time:</label>
+          <input type="datetime-local" id="editPreparationDate" name="preparationDate" />
+    
+          <label for="editAllergenInfo">Allergen Information:</label>
+          <textarea id="editAllergenInfo" name="allergenInfo"></textarea>
+    
+          <label for="editPackagingType">Packaging Type:</label>
+          <input type="text" id="editPackagingType" name="packagingType" />
+    
+          <label for="editReheatingInstructions">Reheating Instructions:</label>
+          <textarea id="editReheatingInstructions" name="reheatingInstructions"></textarea>
+    
+          <label for="editCertification">Certification (optional):</label>
+          <input type="text" id="editCertification" name="certification" />
+    
+          <label for="editPickupAddress">Pickup Address:</label>
+          <textarea id="editPickupAddress" name="pickupAddress"></textarea>
+    
+          <label for="editLandmark">Landmark:</label>
+          <input type="text" id="editLandmark" name="landmark" />
+    
+          <label for="editContactInfo">Contact Information:</label>
+          <input type="text" id="editContactInfo" name="contactInfo" />
+    
+          <label for="editPickupTimeSlot">Pickup Time Slot:</label>
+          <input type="text" id="editPickupTimeSlot" name="pickupTimeSlot" />
+    
           <button type="submit">Save Changes</button>
         </form>
       </div>
     </div>
   </main>
-
-  <!-- Scripts -->
   <script src="./js/navbar.js"></script>
   <script src="./js/profile.js"></script>
 </body>

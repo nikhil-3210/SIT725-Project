@@ -5,10 +5,11 @@ const Post = require('../models/Post');
 // @access  Public
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await Post.find().populate('donor', 'name email');
-    res.json(posts);
+    const posts = await Post.find().populate("donor", "name email"); // Ensure donor details are included
+    res.json(posts); // Send all post details to the client
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error("Error fetching posts:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
@@ -16,6 +17,8 @@ exports.getPosts = async (req, res) => {
 // @route   POST /api/posts
 // @access  Private (Donors only)
 exports.createPost = async (req, res) => {
+  console.log("Request Body:", req.body); // Debugging log
+
   const {
     title,
     description,
@@ -25,9 +28,19 @@ exports.createPost = async (req, res) => {
     containsNuts,
     ingredients,
     additionalDescription,
+    expiryDate,
+    storageInstructions,
+    servingSize,
+    preparationDate,
+    allergenInfo,
+    packagingType,
+    reheatingInstructions,
+    certification,
+    pickupAddress,
+    landmark,
+    contactInfo,
+    pickupTimeSlot,
   } = req.body;
-
-  console.log("Received payload:", req.body); // Debug log
 
   try {
     if (req.user.role !== "donor") {
@@ -41,28 +54,27 @@ exports.createPost = async (req, res) => {
       quantity,
       foodType,
       dietaryCategory,
-      containsNuts,
+      containsNuts: containsNuts === "true", // Convert string to boolean
       ingredients,
       additionalDescription,
+      expiryDate,
+      storageInstructions,
+      servingSize,
+      preparationDate,
+      allergenInfo,
+      packagingType,
+      reheatingInstructions,
+      certification,
+      pickupAddress,
+      landmark,
+      contactInfo,
+      pickupTimeSlot,
     });
 
-    console.log("Post created successfully:", post); // Debug log
     res.status(201).json(post);
   } catch (error) {
-    console.error("Error creating post:", error.message); // Debug log
+    console.error("Error creating post:", error.message);
     res.status(500).json({ message: "Server error", error: error.message });
-  }
-};
-
-// @desc    Get posts by the logged-in user
-// @route   GET /api/posts/my-posts
-// @access  Private
-exports.getMyPosts = async (req, res) => {
-  try {
-    const posts = await Post.find({ donor: req.user.id }); // Ensure `donor` matches the logged-in user
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
@@ -79,34 +91,59 @@ exports.updatePost = async (req, res) => {
     containsNuts,
     ingredients,
     additionalDescription,
+    expiryDate,
+    storageInstructions,
+    servingSize,
+    preparationDate,
+    allergenInfo,
+    packagingType,
+    reheatingInstructions,
+    certification,
+    pickupAddress,
+    landmark,
+    contactInfo,
+    pickupTimeSlot,
   } = req.body;
 
   try {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
+      return res.status(404).json({ message: "Post not found" });
     }
 
     // Ensure the logged-in user is the owner of the post
     if (post.donor.toString() !== req.user.id) {
-      return res.status(403).json({ message: 'Not authorized to update this post' });
+      return res.status(403).json({ message: "Not authorized to update this post" });
     }
 
+    // Update fields
     post.title = title || post.title;
     post.description = description || post.description;
     post.quantity = quantity || post.quantity;
     post.foodType = foodType || post.foodType;
     post.dietaryCategory = dietaryCategory || post.dietaryCategory;
-    post.containsNuts = containsNuts ?? post.containsNuts; // Allow boolean values
+    post.containsNuts = containsNuts !== undefined ? containsNuts : post.containsNuts;
     post.ingredients = ingredients || post.ingredients;
     post.additionalDescription = additionalDescription || post.additionalDescription;
+    post.expiryDate = expiryDate || post.expiryDate;
+    post.storageInstructions = storageInstructions || post.storageInstructions;
+    post.servingSize = servingSize || post.servingSize;
+    post.preparationDate = preparationDate || post.preparationDate;
+    post.allergenInfo = allergenInfo || post.allergenInfo;
+    post.packagingType = packagingType || post.packagingType;
+    post.reheatingInstructions = reheatingInstructions || post.reheatingInstructions;
+    post.certification = certification || post.certification;
+    post.pickupAddress = pickupAddress || post.pickupAddress;
+    post.landmark = landmark || post.landmark;
+    post.contactInfo = contactInfo || post.contactInfo;
+    post.pickupTimeSlot = pickupTimeSlot || post.pickupTimeSlot;
 
     const updatedPost = await post.save();
     res.json(updatedPost);
   } catch (error) {
-    console.error('Error updating post:', error.message);
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error("Error updating post:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
@@ -140,18 +177,31 @@ exports.deletePost = async (req, res) => {
 exports.getPostById = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    console.log("Fetched post details:", post); // Debug log
-
     if (post.donor.toString() !== req.user.id) {
       return res.status(403).json({ message: "Not authorized to view this post" });
     }
+
     res.json(post);
   } catch (error) {
     console.error("Error fetching post by ID:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+// @desc    Get posts by the logged-in user
+// @route   GET /api/posts/my-posts
+// @access  Private
+exports.getMyPosts = async (req, res) => {
+  try {
+    const posts = await Post.find({ donor: req.user.id }); // Fetch posts by the logged-in user
+    res.json(posts); // Send all post details to the client
+  } catch (error) {
+    console.error("Error fetching user posts:", error.message);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
