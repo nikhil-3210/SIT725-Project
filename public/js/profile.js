@@ -98,10 +98,11 @@ async function fetchMyPosts(token) {
           <p><strong>Landmark:</strong> ${post.landmark}</p>
           <p><strong>Contact Info:</strong> ${post.contactInfo}</p>
           <p><strong>Pickup Time Slot:</strong> ${post.pickupTimeSlot}</p>
-          ${post.foodImage ? `<img src="/${post.foodImage}" alt="Food Image" style="max-width: 200px;"/>` : ""}
+          ${post.foodImage ? `<img src="${post.foodImage}" alt="Food Image" style="max-width: 200px;"/>` : ""}
           <button onclick="editPost('${post._id}')">Edit</button>
           <button onclick="deletePost('${post._id}')">Delete</button>
         `;
+        console.log(post.foodImage);
         myPostsContainer.appendChild(postElement);
       });
     } else {

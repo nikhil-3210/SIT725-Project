@@ -17,24 +17,25 @@ const showToast = (message) => {
 document.getElementById("createPostForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Unauthorized. Please log in again.");
+    return;
+  }
+
+  // Creating FormData to handle both text fields and file uploads
   const formData = new FormData(e.target);
 
-  // Convert "Yes"/"No" to boolean for containsNuts
-  const containsNuts = document.getElementById("containsNuts").value;
-  formData.set("containsNuts", containsNutsValue);
-
-  // Debugging: Log formData contents
-  for (let [key, value] of formData.entries()) {
-    console.log(`${key}: ${value}`);
-  }
+  // Ensure "containsNuts" is converted to a boolean
+  formData.set("containsNuts", formData.get("containsNuts") === "Yes");
 
   try {
     const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
-      body: formData, // Send updated formData
+      body: formData, // Send formData to the backend
     });
 
     if (!response.ok) {

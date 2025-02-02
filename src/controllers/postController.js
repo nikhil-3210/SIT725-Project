@@ -6,6 +6,11 @@ const Post = require('../models/Post');
 exports.getPosts = async (req, res) => {
   try {
     const posts = await Post.find().populate("donor", "name email"); // Ensure donor details are included
+    // Ensure the correct image path is sent
+    const formattedPosts = posts.map(post => ({
+      ...post._doc,
+      foodImage: post.foodImage ? `${req.protocol}://${req.get("host")}${post.foodImage}` : null
+    }));
     res.json(posts); // Send all post details to the client
   } catch (error) {
     console.error("Error fetching posts:", error.message);
@@ -17,7 +22,8 @@ exports.getPosts = async (req, res) => {
 // @route   POST /api/posts
 // @access  Private (Donors only)
 exports.createPost = async (req, res) => {
-  console.log("Request Body:", req.body); // Debugging log
+  console.log("Request Body:", req.body);
+  console.log("Uploaded File:", req.file);
 
   const {
     title,
@@ -47,6 +53,8 @@ exports.createPost = async (req, res) => {
       return res.status(403).json({ message: "Only donors can create posts" });
     }
 
+    const foodImage = req.file ? `/uploads/${req.file.filename}` : null; // Ensure correct path
+
     const post = await Post.create({
       donor: req.user.id,
       title,
@@ -54,7 +62,7 @@ exports.createPost = async (req, res) => {
       quantity,
       foodType,
       dietaryCategory,
-      containsNuts: containsNuts === "true", // Convert string to boolean
+      containsNuts: containsNuts === "true",
       ingredients,
       additionalDescription,
       expiryDate,
@@ -69,9 +77,10 @@ exports.createPost = async (req, res) => {
       landmark,
       contactInfo,
       pickupTimeSlot,
+      foodImage, // Store relative path
     });
 
-    res.status(201).json(post);
+    res.status(201).json({ message: "Post created successfully", post });
   } catch (error) {
     console.error("Error creating post:", error.message);
     res.status(500).json({ message: "Server error", error: error.message });

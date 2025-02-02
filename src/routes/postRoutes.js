@@ -2,16 +2,32 @@ const express = require("express");
 const { protect } = require("../middlewares/authMiddleware");
 const { getPosts, createPost, getMyPosts, updatePost, deletePost, getPostById } = require('../controllers/postController');
 const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 
-// Initialize router before using it
 const router = express.Router();
 
-// Configure multer for file uploads
+// Set storage engine
+const storage = multer.diskStorage({
+  destination: "./public/uploads/",
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+// Ensure 'uploads' directory exists
+const uploadDir = "uploads/";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+
+// Initialize upload
 const upload = multer({
-  dest: "uploads/", // Directory where files will be stored
-  limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
+  storage: storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
   fileFilter: (req, file, cb) => {
-    // Allow only images
+    // Only accept images
     if (!file.mimetype.startsWith("image/")) {
       return cb(new Error("Only image files are allowed!"));
     }
@@ -19,23 +35,14 @@ const upload = multer({
   },
 });
 
-// Debugging: Ensure all controller functions are properly defined
-console.log({
-  getPosts,
-  createPost,
-  getMyPosts,
-  updatePost,
-  deletePost,
-  getPostById,
-});
+router.get("/", getPosts);
+router.post("/", protect, upload.single("foodImage"), createPost);
+router.get("/my-posts", protect, getMyPosts);
+router.put("/:id", protect, updatePost);
+router.delete("/:id", protect, deletePost);
+router.get("/:id", protect, getPostById);
 
-// Routes
-router.get("/", getPosts); // Public: Fetch all posts
-//router.post("/", protect, upload.none(), createPost); // Use multer to parse form-data router.get("/my-posts", protect, getMyPosts);
-router.post("/", protect, upload.fields([{ name: "foodImage", maxCount: 1 }]), createPost); // Private: Create a post with image
-router.get("/my-posts", protect, getMyPosts); // Private: Fetch posts created by logged-in user
-router.put("/:id", protect, updatePost); // Private: Update a post
-router.delete("/:id", protect, deletePost); // Private: Delete a post
-router.get("/:id", protect, getPostById); // Private: Get a post by ID
+// Serve images statically
+router.use("/uploads", express.static("uploads"));
 
 module.exports = router;

@@ -45,10 +45,11 @@ const fetchPosts = async () => {
           <p><strong>Landmark:</strong> ${post.landmark}</p>
           <p><strong>Contact Info:</strong> ${post.contactInfo}</p>
           <p><strong>Pickup Time Slot:</strong> ${post.pickupTimeSlot}</p>
-          ${post.foodImage ? `<img src="/${post.foodImage}" alt="Food Image" style="max-width: 200px;"/>` : ""}
+          ${post.foodImage ? `<img src="${post.foodImage}" alt="Food Image" style="max-width: 200px;"/>` : ""}
           <!-- Display Donor's Name -->
           <p><strong>Posted By:</strong> ${post.donor?.name || "Anonymous Donor"}</p>
         `;
+        console.log(post.foodImage);
         postsContainer.appendChild(postElement);
       });
     } else {
