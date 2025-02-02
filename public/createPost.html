@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Post</title>
-  <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
-  <h1>Create a Post</h1>
-  <form id="createPostForm">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Post</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <h1>Create a Post</h1>
+    <form id="createPostForm">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required />
 
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
 
-    <label for="quantity">Quantity:</label>
-    <input type="text" id="quantity" name="quantity" required>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required />
 
-    <button type="submit">Create Post</button>
-  </form>
+      <label for="foodType">Food Type:</label>
+      <select id="foodType" name="foodType" required>
+        <option value="Veg">Veg</option>
+        <option value="Non-Veg">Non-Veg</option>
+      </select>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">Item listed successfully!</div>
+      <label for="dietaryCategory">Dietary Category:</label>
+      <input
+        type="text"
+        id="dietaryCategory"
+        name="dietaryCategory"
+        placeholder="e.g., Gluten-Free, Vegan"
+        required
+      />
 
-  <script src="./js/navbar.js"></script> <!-- Navbar -->
-  <script src="./js/create-post.js"></script>
-</body>
+      <label for="containsNuts">Contains Nuts:</label>
+      <select id="containsNuts" name="containsNuts" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="ingredients">Ingredients:</label>
+      <textarea
+        id="ingredients"
+        name="ingredients"
+        placeholder="List the ingredients"
+        required
+      ></textarea>
+
+      <label for="additionalDescription">Additional Description:</label>
+      <textarea
+        id="additionalDescription"
+        name="additionalDescription"
+        placeholder="Add any additional details"
+      ></textarea>
+
+      <button type="submit">Create Post</button>
+    </form>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Item listed successfully!</div>
+
+    <script src="./js/navbar.js"></script>
+    <!-- Navbar -->
+    <script src="./js/create-post.js"></script>
+  </body>
 </html>

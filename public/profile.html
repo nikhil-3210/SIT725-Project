@@ -31,24 +31,62 @@
       <!-- User's posts will be dynamically added here -->
     </div>
     
-    <div id="editModal" class="modal">
+    <div id="editModal" class="modal" style="display: none;">
       <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
         <h2>Edit Post</h2>
         <form id="editPostForm">
           <label for="editTitle">Title:</label>
           <input type="text" id="editTitle" name="title" required />
-    
+      
           <label for="editDescription">Description:</label>
           <textarea id="editDescription" name="description" required></textarea>
-    
+      
           <label for="editQuantity">Quantity:</label>
           <input type="number" id="editQuantity" name="quantity" required />
-    
+      
+          <label for="editFoodType">Food Type:</label>
+          <select id="editFoodType" name="foodType" required>
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+          </select>
+      
+          <label for="editDietaryCategory">Dietary Category:</label>
+          <input
+            type="text"
+            id="editDietaryCategory"
+            name="dietaryCategory"
+            placeholder="e.g., Gluten-Free, Vegan"
+            required
+          />
+      
+          <label for="editContainsNuts">Contains Nuts:</label>
+          <select id="editContainsNuts" name="containsNuts" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+      
+          <label for="editIngredients">Ingredients:</label>
+          <textarea
+            id="editIngredients"
+            name="ingredients"
+            placeholder="List the ingredients"
+            required
+          ></textarea>
+      
+          <label for="editAdditionalDescription">Additional Description:</label>
+          <textarea
+            id="editAdditionalDescription"
+            name="additionalDescription"
+            placeholder="Add any additional details"
+          ></textarea>
+      
           <button type="submit">Save Changes</button>
         </form>
       </div>
     </div>
+  </main>
+
   <!-- Scripts -->
   <script src="./js/navbar.js"></script>
   <script src="./js/profile.js"></script>
