@@ -33,7 +33,7 @@ const loadNavbar = () => {
   const navbarHTML = `
     <nav class="blue darken-3">
       <div class="nav-wrapper container">
-        <a href="posts.html" class="brand-logo">SHARE-A-Bite</a>
+        <a href="posts.html" class="brand-logo">SHARE-A-BITE</a>
         <a href="#" data-target="mobile-nav" class="sidenav-trigger">
           <i class="material-icons">menu</i>
         </a>
@@ -43,7 +43,7 @@ const loadNavbar = () => {
           ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
           <li><a href="blogs.html">Blogs</a></li>
           <li><a href="contact.html">Contact Us</a></li>
-          ${token ? '<li><button id="logoutButton" class="btn-small red lighten-1">Logout</button></li>' : ""}
+          ${token ? '<li><button id="logoutButton" class="btn-small teal">Logout</button></li>' : ""}
         </ul>
       </div>
     </nav>
@@ -55,7 +55,7 @@ const loadNavbar = () => {
       ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
       <li><a href="blogs.html">Blogs</a></li>
       <li><a href="contact.html">Contact Us</a></li>
-      ${token ? '<li><button id="logoutButtonMobile" class="btn-small red">Logout</button></li>' : ""}
+      ${token ? '<li><button id="logoutButtonMobile" class="btn-small ">Logout</button></li>' : ""}
     </ul>
   `;
 

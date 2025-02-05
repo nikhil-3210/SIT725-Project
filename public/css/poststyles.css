@@ -3,5 +3,12 @@ body {
     background-size: cover; /* Cover the entire page */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* No repeating */
+    font-family: "Monotype Corsiva", cursive;
   }
+  @font-face {
+    font-family: "Monotype Corsiva";
+    src: url("./fonts/monotype-corsiva.ttf") format("truetype");
+    font-weight: lighter;
+    font-style: italic;
+}
   

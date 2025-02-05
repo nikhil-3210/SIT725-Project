@@ -36,6 +36,7 @@
             background-size: cover; /* Cover the entire page */
             background-position: center; /* Center the image */
             background-repeat: no-repeat; /* No repeating */
+            font-family: "Monotype Corsiva", cursive;
         }
   
     /* Hover Effect for Cards */
@@ -50,14 +51,20 @@
       background-color: #1e40af !important;
       transition: background-color 0.3s ease-in-out;
     }
+    @font-face {
+    font-family: "Monotype Corsiva";
+    src: url("./fonts/monotype-corsiva.ttf") format("truetype");
+    font-weight: lighter;
+    font-style: italic;
+}
   </style>
 </head>
 <body class="grey lighten-4">
 
   <!-- Header -->
   <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
-    <h2 class="text-2xl font-bold">Create Post</h2>
-    <p>Here You can Create post and Add it</p>
+    <h2 class="text-2xl font-bold">Profile Section</h2>
+    <p>Here You can update your Profile</p>
   </div>
 
   <!-- Profile Update Card -->
@@ -81,7 +88,7 @@
             <label for="role">Role</label>
           </div>
 
-          <button class="btn waves-effect waves-light blue hover-btn" type="submit">Update Profile</button>
+          <button class="btn waves-effect waves-light teal hover-btn" type="submit">Update Profile</button>
         </form>
       </div>
     </div>
@@ -128,6 +135,53 @@
       <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
     </div>
   </div>
+  <footer class="bg-teal-600 text-white mt-auto">
+    <div class="container px-6 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+            
+            <!-- About Section -->
+            <div>
+                <h5 class="font-bold text-lg">About Us</h5>
+                <p class="text-gray-200">Thank you for your commitment to creating a difference together that shall promise a better future.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h5 class="font-bold text-lg">Quick Links</h5>
+                <ul>
+                    <li><a href="posts.html" class="text-gray-200 hover:text-white">Home</a></li>
+                    <li><a href="contact.html" class="text-gray-200 hover:text-white">Contact</a></li>
+                    <li><a href="blogs.html" class="text-gray-200 hover:text-white">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div>
+                <h5 class="font-bold text-lg">Follow Us</h5>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="https://www.facebook.com" class="text-gray-200 hover:text-white text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://x.com/?mx=2" class="text-gray-200 hover:text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com" class="text-gray-200 hover:text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="bg-teal-700 text-center py-3">
+        <p class="text-gray-200 text-sm">© 2025 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
