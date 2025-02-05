@@ -3,105 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>Profile</title>
-  <link rel="stylesheet" href="./css/styles.css"> <!-- Add your styles file -->
-</head>
-<body>
-  <main>
-    <h1>Profile</h1>
-    <form id="profileForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
-    
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-    
-      <label for="role">Role:</label>
-      <input type="text" id="role" name="role" disabled /> <!-- Role should not be editable -->
-    
-      <button type="submit">Update Profile</button>
-    </form>
 
-    <h2 id="postsHeader">My Posts</h2>
-    <div id="myPostsContainer"></div>
-    
-    <div id="editModal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>Edit Post</h2>
-        <form id="editPostForm">
-          <label for="editTitle">Title:</label>
-          <input type="text" id="editTitle" name="title" required />
-    
-          <label for="editDescription">Description:</label>
-          <textarea id="editDescription" name="description" required></textarea>
-    
-          <label for="editQuantity">Quantity:</label>
-          <input type="number" id="editQuantity" name="quantity" required />
-    
-          <label for="editFoodType">Food Type:</label>
-          <select id="editFoodType" name="foodType" required>
-            <option value="Veg">Veg</option>
-            <option value="Non-Veg">Non-Veg</option>
-          </select>
-    
-          <label for="editDietaryCategory">Dietary Category:</label>
-          <input type="text" id="editDietaryCategory" name="dietaryCategory" required />
-    
-          <label for="editContainsNuts">Contains Nuts:</label>
-          <select id="editContainsNuts" name="containsNuts" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-    
-          <label for="editIngredients">Ingredients:</label>
-          <textarea id="editIngredients" name="ingredients" required></textarea>
-    
-          <label for="editAdditionalDescription">Additional Description:</label>
-          <textarea id="editAdditionalDescription" name="additionalDescription"></textarea>
-    
-          <label for="editExpiryDate">Expiry Date/Time:</label>
-          <input type="datetime-local" id="editExpiryDate" name="expiryDate" />
-    
-          <label for="editStorageInstructions">Storage Instructions:</label>
-          <textarea id="editStorageInstructions" name="storageInstructions"></textarea>
-    
-          <label for="editServingSize">Serving Size:</label>
-          <input type="text" id="editServingSize" name="servingSize" />
-    
-          <label for="editPreparationDate">Preparation Date/Time:</label>
-          <input type="datetime-local" id="editPreparationDate" name="preparationDate" />
-    
-          <label for="editAllergenInfo">Allergen Information:</label>
-          <textarea id="editAllergenInfo" name="allergenInfo"></textarea>
-    
-          <label for="editPackagingType">Packaging Type:</label>
-          <input type="text" id="editPackagingType" name="packagingType" />
-    
-          <label for="editReheatingInstructions">Reheating Instructions:</label>
-          <textarea id="editReheatingInstructions" name="reheatingInstructions"></textarea>
-    
-          <label for="editCertification">Certification (optional):</label>
-          <input type="text" id="editCertification" name="certification" />
-    
-          <label for="editPickupAddress">Pickup Address:</label>
-          <textarea id="editPickupAddress" name="pickupAddress"></textarea>
-    
-          <label for="editLandmark">Landmark:</label>
-          <input type="text" id="editLandmark" name="landmark" />
-    
-          <label for="editContactInfo">Contact Information:</label>
-          <input type="text" id="editContactInfo" name="contactInfo" />
-    
-          <label for="editPickupTimeSlot">Pickup Time Slot:</label>
-          <input type="text" id="editPickupTimeSlot" name="pickupTimeSlot" />
-    
-          <button type="submit">Save Changes</button>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- AOS (Animate on Scroll) Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="./js/profile.js" defer></script>
+  <script src="./js/navbar.js" defer></script>
+  <script defer>
+      document.addEventListener('DOMContentLoaded', function() {
+          AOS.init(); // Initialize animations
+      });
+  </script>
+
+  <style>
+
+        body {
+            background-image: url('../images/image.jpg'); /* Adjust the path as needed */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+        }
+  
+    /* Hover Effect for Cards */
+    .hover-card:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hover Effect for Buttons */
+    .hover-btn:hover {
+      background-color: #1e40af !important;
+      transition: background-color 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="grey lighten-4">
+
+  <!-- Header -->
+  <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
+    <h2 class="text-2xl font-bold">Create Post</h2>
+    <p>Here You can Create post and Add it</p>
+  </div>
+
+  <!-- Profile Update Card -->
+  <div class="container py-6">
+    <div class="card hover-card" data-aos="fade-up">
+      <div class="card-content">
+        <span class="card-title">Update Profile</span>
+        <form id="profileForm">
+          <div class="input-field">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Name</label>
+          </div>
+
+          <div class="input-field">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Email</label>
+          </div>
+
+          <div class="input-field">
+            <input type="text" id="role" name="role" disabled>
+            <label for="role">Role</label>
+          </div>
+
+          <button class="btn waves-effect waves-light blue hover-btn" type="submit">Update Profile</button>
         </form>
       </div>
     </div>
-  </main>
-  <script src="./js/navbar.js"></script>
-  <script src="./js/profile.js"></script>
+
+    <!-- Posts Section -->
+    <h4 class="center-align" id="postsHeader" data-aos="fade-up">My Posts</h4>
+    <div id="myPostsContainer" class="row" data-aos="fade-up"></div>
+  </div>
+
+
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h4>Edit Post</h4>
+      <form id="editPostForm">
+        <div class="input-field">
+          <input type="text" id="editTitle" name="title" required>
+          <label for="editTitle">Title</label>
+        </div>
+
+        <div class="input-field">
+          <textarea id="editDescription" name="description" class="materialize-textarea" required></textarea>
+          <label for="editDescription">Description</label>
+        </div>
+
+        <div class="input-field">
+          <input type="number" id="editQuantity" name="quantity" required>
+          <label for="editQuantity">Quantity</label>
+        </div>
+
+        <div class="input-field">
+          <select id="editFoodType" name="foodType">
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+          </select>
+          <label for="editFoodType">Food Type</label>
+        </div>
+
+        <button class="btn waves-effect waves-light green hover-btn" type="submit">Save Changes</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+    </div>
+  </div>
+
 </body>
 </html>

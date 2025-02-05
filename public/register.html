@@ -4,32 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-  <link rel="stylesheet" href="./css/styles.css">
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./css/styles2.css">
 </head>
-<body>
-  <h1>Register</h1>
-  <form id="registerForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
-  
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
-  
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
-  
-    <label for="role">Role:</label>
-    <div>
-      <input type="radio" id="donor" name="role" value="donor" required />
-      <label for="donor">Donor</label>
-  
-      <input type="radio" id="beneficiary" name="role" value="beneficiary" required />
-      <label for="beneficiary">Beneficiary</label>
-    </div>
-  
-    <button type="submit">Register</button>
-  </form>
+<body class="valign-wrapper" style="height: 100vh; display: flex; align-items: center; justify-content: center;">
 
-  <script src="./js/register.js"></script> <!-- JavaScript for registration functionality -->
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center">Register</span>
+            <form id="registerForm">
+              <div class="input-field">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Full Name</label>
+              </div>
+              <div class="input-field">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+              </div>
+
+              <p class="center">Role:</p>
+              <div class="radio-group">
+                  <label>
+                      <input type="radio" name="role" value="donor" required>
+                      <span>Donor</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="role" value="beneficiary" required>
+                      <span>Beneficiary</span>
+                  </label>
+              </div>
+
+              <button class="btn waves-effect waves-light green btn-large" type="submit" style="width: 100%;">REGISTER</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./js/register.js"></script>
 </body>
 </html>

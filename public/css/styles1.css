@@ -1,0 +1,32 @@
+/* Fix for Navbar Layout */
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* Prevent duplication layout issues */
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures navbar is always on top */
+}
+
+/* Ensure navbar items are properly spaced */
+nav ul {
+    margin-right: 20px;
+}
+
+nav ul li {
+    margin-left: 15px;
+}
+
+/* Floating Action Button Fix */
+.fixed-action-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}

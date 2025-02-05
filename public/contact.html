@@ -4,30 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- MaterializeCSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- AOS (Animate on Scroll) Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-image: url('../images/image.jpg'); /* Adjust the path as needed */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+        }
+        /* Card Styling */
+        .contact-card {
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Input Field Animations */
+        .input-field input, .input-field textarea {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .input-field input:focus, .input-field textarea:focus {
+            border-bottom: 2px solid #007BFF !important;
+            box-shadow: 0 1px 0 0 #007BFF !important;
+        }
+
+        /* Send Button Animation */
+        .send-btn {
+            width: 100%;
+            transition: all 0.3s;
+            background: #007BFF;
+        }
+
+        .send-btn:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        /* Response Message */
+        #responseMessage {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
     <script src="./js/navbar.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init(); // Initialize animations
+        });
+    </script>
 </head>
-<body>
+<body class="blue lighten-5">
 
-    <h1>Contact Us</h1>
-    <p>If you have any questions or inquiries, feel free to reach out to us using the form below.</p>
+    <!-- Header -->
+    <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
+        <h2 class="text-2xl font-bold">Contact Us</h2>
+        <p>Get in touch with us for any inquiries or feedback</p>
+    </div>
 
-    <form id="contactForm">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
+    <!-- Contact Form Section -->
+    <div class="container py-6">
+        <div class="card contact-card" data-aos="fade-up">
+            <h4 class="center-align">Contact Us</h4>
+            <p class="center-align">If you have any questions, feel free to reach out!</p>
 
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
+            <form id="contactForm">
+                <div class="input-field" data-aos="fade-right">
+                    <i class="fas fa-user prefix"></i>
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Your Name</label>
+                </div>
 
-        <label for="message">Your Message:</label>
-        <textarea id="message" name="message" required></textarea>
+                <div class="input-field" data-aos="fade-left">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Your Email</label>
+                </div>
 
-        <button type="submit">Send Message</button>
-    </form>
+                <div class="input-field" data-aos="fade-right">
+                    <i class="fas fa-comment prefix"></i>
+                    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
 
-    <div id="responseMessage"></div>
+                <button type="submit" class="btn waves-effect waves-light send-btn" data-aos="zoom-in">Send Message</button>
+            </form>
 
-    <script src="./js/contact.js"></script>
+            <div id="responseMessage" class="center-align" data-aos="fade-up"></div>
+        </div>
+    </div>
+
+    <!-- AOS and Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </body>
 </html>

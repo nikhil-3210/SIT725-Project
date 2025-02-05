@@ -3,10 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Create Post</title>
-    <link rel="stylesheet" href="./css/styles.css" />
   </head>
+  <style>
+    body {
+        background-image: url('../images/image.jpg'); /* Adjust the path as needed */
+        background-size: cover; /* Cover the entire page */
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* No repeating */
+    }
+</style>
   <body>
+    <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
+      <h2 class="text-2xl font-bold">Create Post</h2>
+      <p>Here You can Create post and Add it</p>
+    </div>
+    
     <h1>Create a Post</h1>
     <form id="createPostForm" enctype="multipart/form-data">
       <label for="title">Title:</label>
@@ -149,7 +163,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast">Item listed successfully!</div>
 
-    <script src="./js/navbar.js"></script>
     <script src="./js/create-post.js"></script>
   </body>
+  <script src="./js/navbar.js"></script>
 </html>

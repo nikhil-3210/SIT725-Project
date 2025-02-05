@@ -1,0 +1,7 @@
+body {
+    background-image: url('../images/image.jpg'); /* Adjust the path as needed */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No repeating */
+  }
+  

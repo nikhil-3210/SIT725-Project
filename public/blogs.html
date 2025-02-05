@@ -3,34 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs</title>
-    <link rel="stylesheet" href="./css/styles.css"> <!-- Link to your existing styles -->
-    <script src="./js/navbar.js" defer></script> <!-- Ensure navbar is included -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Blogs | Food Sharing</title>
+    
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- AOS (Animate on Scroll) Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- JavaScript -->
+    <script src="./js/navbar.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init(); // Initialize animations
+        });
+    </script>
+    <style>
+        body {
+            background-image: url('../images/image.jpg'); /* Adjust the path as needed */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeating */
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Blogs</h1>
-    <p>Read the latest updates and articles about food sharing, sustainability, and more.</p>
-
-    <div id="blogContainer">
-        <article>
-            <h2>How to Reduce Food Waste?</h2>
-            <p>Learn practical ways to minimize food waste and make a positive impact...</p>
-            <a href="#">Read more</a>
-        </article>
-
-        <article>
-            <h2>Why Food Sharing Matters?</h2>
-            <p>Discover the importance of food sharing and how it helps communities...</p>
-            <a href="#">Read more</a>
-        </article>
-
-        <article>
-            <h2>Best Practices for Donors</h2>
-            <p>As a donor, here’s how you can ensure food safety and quality...</p>
-            <a href="#">Read more</a>
-        </article>
+    <div class="w-full bg-blue-400 text-white text-center py-6">
+        <h2 class="text-2xl font-bold">Create Post</h2>
+        <p>Here You can Create post and Add it</p>
+    </div>
+    <!-- Hero Section -->
+    <div class="container center">
+        <h3 class="blue-text text-darken-3" data-aos="fade-up">Blogs</h3>
+        <p data-aos="fade-up" data-aos-delay="200">Read the latest updates and articles about food sharing, sustainability, and more.</p>
     </div>
 
+    <!-- Blog Posts -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./images/food_waste.jpg" alt="Reduce Food Waste">
+                        <span class="card-title">Reduce Food Waste</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Learn practical ways to minimize food waste and make a positive impact.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="details/reduce_food_waste.html" class="blue-text">Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./images/food_sharing.jpg" alt="Food Sharing Matters">
+                        <span class="card-title">Food Sharing Matters</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Discover the importance of food sharing and how it helps communities.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="details/food_sharing_matters.html" class="blue-text">Read more</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./images/food_donation.jpg" alt="Best Practices for Donors">
+                        <span class="card-title">Best Practices for Donors</span>
+                    </div>
+                    <div class="card-content">
+                        <p>As a donor, here’s how you can ensure food safety and quality.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="details/best_practices_for_donors.html" class="blue-text">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,225 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../images/image1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Center the form properly */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glassmorphism Transparent Card */
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.25); /* Increased transparency */
+    backdrop-filter: blur(4px); /* Stronger blur effect */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.8s ease-in-out;
+    padding: 40px;
+    width: 28dvw;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+/* Improve text visibility */
+.card-title {
+    font-weight: 700;
+    color: #fff; /* White text for better contrast */
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.input-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-field input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    padding: 10px;
+    color: #fff;
+    outline: none;
+}
+
+/* Labels */
+.input-field label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Increase input padding */
+.input-field input:focus {
+    border-bottom: 2px solid #42A5F5;
+    box-shadow: none;
+}
+
+/* Placeholder text */
+::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Styling for radio buttons */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+/* Radio button label styling */
+.radio-group label {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* Ensure radio buttons are visible */
+.radio-group input[type="radio"] {
+    appearance: auto;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Custom styling when selected */
+.radio-group input[type="radio"]:checked {
+    accent-color: white;
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 25px;
+    font-weight: 700;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #42A5F5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Fix button text visibility */
+.btn:hover {
+    transform: scale(1.05);
+    background: #0D47A1;
+}
+
+/* Ensure link text is visible */
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: white;
+}
+
+/* Fix Register link */
+p a {
+    color: #42A5F5;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Subtle animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Contact Form Styling */
+.contact-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2); /* Glass effect */
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.8s ease-in-out;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Improve text visibility */
+.contact-card h2 {
+  font-weight: 700;
+  color: #fff;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* Input field styling */
+.input-field input, .input-field textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  padding: 10px;
+  color: #fff;
+  outline: none;
+}
+
+/* Labels */
+.input-field label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Adjust textarea size */
+.materialize-textarea {
+  min-height: 100px;
+}
+
+/* Button Styling */
+.send-btn {
+  border-radius: 25px;
+  font-weight: 700;
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background: #42A5F5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Hover effect */
+.send-btn:hover {
+  transform: scale(1.05);
+  background: #0D47A1;
+}
