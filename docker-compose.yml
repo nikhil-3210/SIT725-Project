@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  share-a-bite:
+    build: .
+    container_name: share-a-bite-app
+    restart: always
+    ports:
+      - "2999:2999"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/share_a_bite
+      - NODE_ENV=dev
+      - JWT_SECRET=thenikhiljadav
+      - PORT=2999
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
