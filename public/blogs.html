@@ -25,32 +25,27 @@
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init(); // Initialize animations
+
+            // Add click event listeners for "Read More" buttons
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', function() {
+                    const blogUrl = this.getAttribute('data-url');
+                    window.location.href = blogUrl;
+                });
+            });
         });
     </script>
-    <style>
-        body {
-            background-image: url('../images/image.jpg'); /* Adjust the path as needed */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-repeat: no-repeat; /* No repeating */
-            font-family: "Monotype Corsiva", cursive;
-        }
-  @font-face {
-    font-family: "Monotype Corsiva";
-    src: url("./fonts/monotype-corsiva.ttf") format("truetype");
-    font-weight: lighter;
-    font-style: italic;
-}
-    </style>
 </head>
 <body>
     <div class="w-full bg-blue-400 text-white text-center py-6">
         <h3 class="text-darken-3" data-aos="fade-up">Blogs</h3>
         <p data-aos="fade-up" data-aos-delay="200">Read the latest updates and articles about food sharing, sustainability, and more.</p>
     </div>
+
     <!-- Blog Posts -->
     <div class="container">
         <div class="row">
+            <!-- Blog 1 -->
             <div class="col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
                     <div class="card-image">
@@ -61,11 +56,12 @@
                         <p>Learn practical ways to minimize food waste and make a positive impact.</p>
                     </div>
                     <div class="card-action">
-                        <a href="details/reduce_food_waste.html" class="blue-text">Read more</a>
+                        <button class="read-more blue-text" data-url="reducefoodwaste.html">Read more</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Blog 2 -->
             <div class="col s12 m6 l4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="card">
                     <div class="card-image">
@@ -76,11 +72,12 @@
                         <p>Discover the importance of food sharing and how it helps communities.</p>
                     </div>
                     <div class="card-action">
-                        <a href="details/food_sharing_matters.html" class="blue-text">Read more</a>
+                        <button class="read-more blue-text" data-url="food_sharing_matters.html">Read more</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Blog 3 -->
             <div class="col s12 m6 l4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="card">
                     <div class="card-image">
@@ -91,12 +88,13 @@
                         <p>As a donor, here’s how you can ensure food safety and quality.</p>
                     </div>
                     <div class="card-action">
-                        <a href="details/best_practices_for_donors.html" class="blue-text">Read more</a>
+                        <button class="read-more blue-text" data-url="best_practices_for_donors.html">Read more</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <footer class="bg-teal-600 text-white mt-auto">
         <div class="container px-6 py-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
@@ -106,7 +104,7 @@
                     <h5 class="font-bold text-lg">About Us</h5>
                     <p class="text-gray-200">Thank you for your commitment to creating a difference together that shall promise a better future.</p>
                 </div>
-    
+
                 <!-- Quick Links -->
                 <div>
                     <h5 class="font-bold text-lg">Quick Links</h5>
@@ -116,7 +114,7 @@
                         <li><a href="blogs.html" class="text-gray-200 hover:text-white">Blogs</a></li>
                     </ul>
                 </div>
-    
+
                 <!-- Social Media Icons -->
                 <div>
                     <h5 class="font-bold text-lg">Follow Us</h5>
@@ -132,18 +130,18 @@
                         </a>
                     </div>
                 </div>
-    
+
             </div>
         </div>
-    
+
         <!-- Copyright -->
         <div class="bg-teal-700 text-center py-3">
             <p class="text-gray-200 text-sm">© 2025 Your Company. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-    
+
 </body>
 </html>
