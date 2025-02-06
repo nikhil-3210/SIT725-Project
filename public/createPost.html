@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Materialize CSS -->
     <link
@@ -17,7 +18,14 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        font-family: "Monotype Corsiva", cursive;
       }
+      @font-face {
+    font-family: "Monotype Corsiva";
+    src: url("./fonts/monotype-corsiva.ttf") format("truetype");
+    font-weight: lighter;
+    font-style: italic;
+}
       .container {
         margin-top: 40px;
       }
@@ -44,7 +52,12 @@
     <title>Create Post</title>
   </head>
   <body>
-    <!-- Navigation Bar -->
+    <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
+      <h2 class="text-2xl font-bold">Create A Posts</h2>
+      <p>Feel free to create a post of food.</p>
+  </div>
+
+    <!-- Navigation Bar
     <nav class="blue darken-2">
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">Create Post</a>
@@ -52,12 +65,11 @@
           <li><a href="posts.html">Home</a></li>
           <li><a href="profile.html">Profile</a></li>
         </ul>
-      </div>
-    </nav>
+      </div> -->
 
-    <div class="container">
+    <div class="container py-6 px-6">
       <div class="card">
-        <h4 class="center-align">Create a Post</h4>
+ 
 
         <form id="createPostForm" enctype="multipart/form-data">
           <div class="row">

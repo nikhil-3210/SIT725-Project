@@ -30,34 +30,34 @@ const loadNavbar = () => {
   const role = localStorage.getItem("role");
 
   // Dynamically create navbar
-  const navbarHTML = `
-    <nav class="blue darken-3">
-      <div class="nav-wrapper container">
-        <a href="posts.html" class="brand-logo">SHARE-A-BITE</a>
-        <a href="#" data-target="mobile-nav" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
-        </a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="posts.html">Home</a></li>
-          ${token && role === "donor" ? '<li><a href="createPost.html">Create Post</a></li>' : ""}
-          ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
-          <li><a href="blogs.html">Blogs</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          ${token ? '<li><button id="logoutButton" class="btn-small teal">Logout</button></li>' : ""}
-        </ul>
-      </div>
-    </nav>
+const navbarHTML = `
+  <nav class="blue darken-3">
+    <div class="nav-wrapper container">
+      <a href="posts.html" class="brand-logo">SHARE-A-BITE</a>
+      <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="posts.html">Home</a></li>
+        ${token && role === "donor" ? '<li><a href="createPost.html">Create Post</a></li>' : ""}
+        ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        ${token ? '<li><button id="logoutButton" class="btn-small teal white-text">Logout</button></li>' : ""}
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Mobile Sidebar Navigation -->
-    <ul class="sidenav" id="mobile-nav">
-      <li><a href="posts.html">Home</a></li>
-      ${token && role === "donor" ? '<li><a href="createPost.html">Create Post</a></li>' : ""}
-      ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-      ${token ? '<li><button id="logoutButtonMobile" class="btn-small ">Logout</button></li>' : ""}
-    </ul>
-  `;
+  <!-- Mobile Sidebar Navigation -->
+  <ul class="sidenav" id="mobile-nav">
+    <li><a href="posts.html">Home</a></li>
+    ${token && role === "donor" ? '<li><a href="createPost.html">Create Post</a></li>' : ""}
+    ${token ? '<li><a href="profile.html">Profile</a></li>' : ""}
+    <li><a href="blogs.html">Blogs</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    ${token ? '<li><button id="logoutButtonMobile" class="btn-small teal white-text">Logout</button></li>' : ""}
+  </ul>
+`;
 
   // Insert navbar at the top of the body
   document.body.insertAdjacentHTML("afterbegin", navbarHTML);
