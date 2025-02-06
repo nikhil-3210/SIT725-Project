@@ -3,167 +3,238 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Materialize CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      body {
+        background-image: url("../images/image.jpg"); /* Background Image */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .container {
+        margin-top: 40px;
+      }
+      .card {
+        padding: 20px;
+      }
+      .btn {
+        width: 100%;
+      }
+      .file-field .btn {
+        background-color: #2196f3;
+      }
+      .file-field .btn:hover {
+        background-color: #1976d2;
+      }
+      .btn-submit {
+        background-color: #4caf50;
+      }
+      .btn-submit:hover {
+        background-color: #388e3c;
+      }
+    </style>
 
     <title>Create Post</title>
   </head>
-  <style>
-    body {
-        background-image: url('../images/image.jpg'); /* Adjust the path as needed */
-        background-size: cover; /* Cover the entire page */
-        background-position: center; /* Center the image */
-        background-repeat: no-repeat; /* No repeating */
-    }
-</style>
   <body>
-    <div class="w-full bg-blue-400 text-white text-center py-6" data-aos="fade-down">
-      <h2 class="text-2xl font-bold">Create Post</h2>
-      <p>Here You can Create post and Add it</p>
+    <!-- Navigation Bar -->
+    <nav class="blue darken-2">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">Create Post</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="posts.html">Home</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="card">
+        <h4 class="center-align">Create a Post</h4>
+
+        <form id="createPostForm" enctype="multipart/form-data">
+          <div class="row">
+            <!-- Title -->
+            <div class="input-field col s12">
+              <input type="text" id="title" name="title" required />
+              <label for="title">Title</label>
+            </div>
+
+            <!-- Description -->
+            <div class="input-field col s12">
+              <textarea
+                id="description"
+                name="description"
+                class="materialize-textarea"
+                required
+              ></textarea>
+              <label for="description">Description</label>
+            </div>
+
+            <!-- Quantity -->
+            <div class="input-field col s12">
+              <input type="number" id="quantity" name="quantity" required />
+              <label for="quantity">Quantity</label>
+            </div>
+
+            <!-- Food Type -->
+            <div class="input-field col s12">
+              <select id="foodType" name="foodType" required>
+                <option value="" disabled selected>Select Food Type</option>
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+              </select>
+              <label>Food Type</label>
+            </div>
+
+            <!-- Dietary Category -->
+            <div class="input-field col s12">
+              <input
+                type="text"
+                id="dietaryCategory"
+                name="dietaryCategory"
+                placeholder="e.g., Gluten-Free, Vegan"
+                required
+              />
+              <label for="dietaryCategory">Dietary Category</label>
+            </div>
+
+            <!-- Contains Nuts -->
+            <div class="input-field col s12">
+              <select id="containsNuts" name="containsNuts" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <label>Contains Nuts</label>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="input-field col s12">
+              <textarea
+                id="ingredients"
+                name="ingredients"
+                class="materialize-textarea"
+                placeholder="List the ingredients"
+                required
+              ></textarea>
+              <label for="ingredients">Ingredients</label>
+            </div>
+
+            <!-- Additional Description -->
+            <div class="input-field col s12">
+              <textarea
+                id="additionalDescription"
+                name="additionalDescription"
+                class="materialize-textarea"
+                placeholder="Add any additional details"
+              ></textarea>
+              <label for="additionalDescription">Additional Description</label>
+            </div>
+
+            <!-- Expiry Date -->
+            <div class="input-field col s12">
+              <input type="datetime-local" id="expiryDate" name="expiryDate" />
+              <label for="expiryDate">Expiry Date/Time</label>
+            </div>
+
+            <!-- Storage Instructions -->
+            <div class="input-field col s12">
+              <textarea
+                id="storageInstructions"
+                name="storageInstructions"
+                class="materialize-textarea"
+                placeholder="e.g., Refrigerate, Keep frozen"
+              ></textarea>
+              <label for="storageInstructions">Storage Instructions</label>
+            </div>
+
+            <!-- Serving Size -->
+            <div class="input-field col s12">
+              <input
+                type="text"
+                id="servingSize"
+                name="servingSize"
+                placeholder="e.g., 2 servings"
+              />
+              <label for="servingSize">Serving Size</label>
+            </div>
+
+            <!-- Pickup Address -->
+            <div class="input-field col s12">
+              <textarea
+                id="pickupAddress"
+                name="pickupAddress"
+                class="materialize-textarea"
+                placeholder="Enter the pickup address"
+              ></textarea>
+              <label for="pickupAddress">Pickup Address</label>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="input-field col s12">
+              <input
+                type="text"
+                id="contactInfo"
+                name="contactInfo"
+                placeholder="Phone or email"
+              />
+              <label for="contactInfo">Contact Information</label>
+            </div>
+
+            <!-- Upload Image -->
+            <div class="file-field input-field col s12">
+              <div class="btn">
+                <span>Upload Food Image</span>
+                <input
+                  type="file"
+                  id="foodImage"
+                  name="foodImage"
+                  accept="image/*"
+                />
+              </div>
+              <div class="file-path-wrapper">
+                <input
+                  class="file-path validate"
+                  type="text"
+                  placeholder="Upload food image"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="input-field col s12">
+              <button
+                type="submit"
+                class="btn btn-submit waves-effect waves-light"
+              >
+                Create Post
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    
-    <h1>Create a Post</h1>
-    <form id="createPostForm" enctype="multipart/form-data">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required />
-
-      <label for="description">Description:</label>
-      <textarea id="description" name="description" required></textarea>
-
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" required />
-
-      <label for="foodType">Food Type:</label>
-      <select id="foodType" name="foodType" required>
-        <option value="Veg">Veg</option>
-        <option value="Non-Veg">Non-Veg</option>
-      </select>
-
-      <label for="dietaryCategory">Dietary Category:</label>
-      <input
-        type="text"
-        id="dietaryCategory"
-        name="dietaryCategory"
-        placeholder="e.g., Gluten-Free, Vegan"
-        required
-      />
-
-      <label for="containsNuts">Contains Nuts:</label>
-      <select id="containsNuts" name="containsNuts" required>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-
-      <label for="ingredients">Ingredients:</label>
-      <textarea
-        id="ingredients"
-        name="ingredients"
-        placeholder="List the ingredients"
-        required
-      ></textarea>
-
-      <label for="additionalDescription">Additional Description:</label>
-      <textarea
-        id="additionalDescription"
-        name="additionalDescription"
-        placeholder="Add any additional details"
-      ></textarea>
-
-      <label for="expiryDate">Expiry Date/Time:</label>
-      <input type="datetime-local" id="expiryDate" name="expiryDate" />
-
-      <label for="storageInstructions">Storage Instructions:</label>
-      <textarea
-        id="storageInstructions"
-        name="storageInstructions"
-        placeholder="e.g., Refrigerate, Keep frozen"
-      ></textarea>
-
-      <label for="servingSize">Serving Size:</label>
-      <input
-        type="text"
-        id="servingSize"
-        name="servingSize"
-        placeholder="e.g., 2 servings"
-      />
-
-      <label for="preparationDate">Preparation Date/Time:</label>
-      <input
-        type="datetime-local"
-        id="preparationDate"
-        name="preparationDate"
-      />
-
-      <label for="allergenInfo">Allergen Information:</label>
-      <textarea
-        id="allergenInfo"
-        name="allergenInfo"
-        placeholder="e.g., Contains dairy, gluten"
-      ></textarea>
-
-      <label for="packagingType">Packaging Type:</label>
-      <input
-        type="text"
-        id="packagingType"
-        name="packagingType"
-        placeholder="e.g., Sealed, Freshly prepared"
-      />
-
-      <label for="reheatingInstructions">Reheating Instructions:</label>
-      <textarea
-        id="reheatingInstructions"
-        name="reheatingInstructions"
-        placeholder="Provide reheating instructions"
-      ></textarea>
-
-      <label for="certification">Certification (optional):</label>
-      <input
-        type="text"
-        id="certification"
-        name="certification"
-        placeholder="e.g., Organic, Halal"
-      />
-
-      <label for="pickupAddress">Pickup Address:</label>
-      <textarea
-        id="pickupAddress"
-        name="pickupAddress"
-        placeholder="Enter the pickup address"
-      ></textarea>
-
-      <label for="landmark">Landmark:</label>
-      <input
-        type="text"
-        id="landmark"
-        name="landmark"
-        placeholder="e.g., Near ABC park"
-      />
-
-      <label for="contactInfo">Contact Information:</label>
-      <input
-        type="text"
-        id="contactInfo"
-        name="contactInfo"
-        placeholder="Phone or email"
-      />
-
-      <label for="pickupTimeSlot">Pickup Time Slot:</label>
-      <input
-        type="text"
-        id="pickupTimeSlot"
-        name="pickupTimeSlot"
-        placeholder="e.g., 10:00 AM - 12:00 PM"
-      />
-
-      <label for="foodImage">Image of the Food:</label>
-      <input type="file" id="foodImage" name="foodImage" accept="image/*" />
-
-      <button type="submit">Create Post</button>
-    </form>
-
     <!-- Toast Notification -->
     <div id="toast" class="toast">Item listed successfully!</div>
 
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Initialize Materialize Components -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        M.AutoInit();
+      });
+    </script>
+
     <script src="./js/create-post.js"></script>
+    <script src="./js/navbar.js"></script>
   </body>
-  <script src="./js/navbar.js"></script>
 </html>
